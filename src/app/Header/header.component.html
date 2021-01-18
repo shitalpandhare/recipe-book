@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default" style="background-color:lightgray;">
+  <div *ngIf="handleError">
+    <app-alert
+      [message]="handleError"
+      (close)="onCloseHandleError()"
+    ></app-alert>
+
+    <!--  -->
+  </div>
+  <div><a style="font-size: 20px;cursor: pointer">Recipe Book</a></div>
+  <div class="col-md-10">
+    <div class="row nav-list">
+      <div class="col-md-1" routerLinkActive="active" *ngIf="isAuthenticated">
+        <a routerLink="/recipes" style="cursor: pointer;">Recipes</a>
+      </div>
+      <div class="col-md-2" routerLinkActive="active" *ngIf="!isAuthenticated">
+        <a routerLink="/auth" style="cursor: pointer;">Authenticate</a>
+      </div>
+      <div class="col-md-2" routerLinkActive="active">
+        <a routerLink="/shopping-list" style="cursor: pointer;"
+          >Shopping List</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <a
+      style="cursor: pointer; margin-right: 10px;"
+      *ngIf="isAuthenticated"
+      (click)="onLogout()"
+      >Logout</a
+    >
+  </div>
+  <div class="dropdown" *ngIf="isAuthenticated">
+    <a style="cursor: pointer;">Manage<span class="caret"></span></a>
+    <div class="dropdown-content">
+      <a class="dropdown-item" (click)="onSaveData()">Save Data</a>
+      <a class="dropdown-item" (click)="onFetchData()">Fetch Data</a>
+    </div>
+  </div>
+</nav>
