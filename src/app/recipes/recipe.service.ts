@@ -39,6 +39,8 @@ export class RecipeService {
 
   getRecipe(id: number) {
     console.log('beguv');
+    console.log('beguv');
+
     return this.recipes[id];
   }
 
